@@ -3,12 +3,14 @@ import { describe, it, expect } from 'vitest'
 import { PhotoItem } from './PhotoItem'
 
 const defaultProps = {
+  id: '1',
   photographer: 'John Wick',
   alt: 'A day at the subway',
   src: 'http://google.com',
   avgColor: '#FF6347',
   isLiked: true,
   photographerUrl: 'http://google.com',
+  onToggleLike: () => {},
 }
 
 describe('PhotoItem', () => {
