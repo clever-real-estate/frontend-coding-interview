@@ -5,6 +5,11 @@ import { PhotoList } from '@/features/photos/photo-list/PhotoList'
 import { usePhotosContext } from '@/features/photos/photo-list/PhotosContext'
 import { PhotosLoading } from '@/features/photos/photo-list/PhotosLoading'
 import { useEffect } from 'react'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'All Photos',
+}
 
 export default function Home() {
   const { isLoading, error, data } = usePhotosQuery()

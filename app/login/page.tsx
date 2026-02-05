@@ -1,5 +1,10 @@
 import { Logo } from '@/components/Logo'
 import { LoginForm } from '@/features/forms/login-form/LoginForm'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Login',
+}
 
 export default async function Login() {
   return (
