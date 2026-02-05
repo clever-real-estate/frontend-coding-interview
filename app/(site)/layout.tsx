@@ -1,6 +1,11 @@
 import { PhotosProvider } from '@/features/photos/photo-list/PhotosContext'
 import { Header } from '@/features/site/header/Header'
 import { ReactNode } from 'react'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'All Photos',
+}
 
 export default function SiteLayout({ children }: { children?: ReactNode }) {
   return (

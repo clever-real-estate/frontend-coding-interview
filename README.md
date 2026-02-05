@@ -44,3 +44,4 @@ I also could have added a bunch of stuff to this repo like github actions CI for
 - Proper error boundaries/tracing with sentry or something.
 - Would add a .env instead of hard coding api key
 - Inline the svgs so they don't create FOUC.
+- Use React Compiler so I don't have to worry about memoization.
