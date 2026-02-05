@@ -1,6 +1,6 @@
 # Photo app
 
-This app shows your photos.
+This app shows your photos. You can like a photo by clicking the star icon. Likes are client sided, and not held in local storage.
 
 ## Installation
 
@@ -16,7 +16,6 @@ To start the app, run `npm run dev`
 
 To log out, visit `/login` and you will be automatically logged out.
 
-You can like a photo by clicking the star icon. Likes are client sided, and not held.  
 
 ## About 
 
