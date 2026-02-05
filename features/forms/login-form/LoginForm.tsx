@@ -9,13 +9,7 @@ export const LoginForm: FC<{ children?: ReactNode }> = () => {
   const [, formAction, isPending] = useActionState(loginAction, null)
 
   return (
-    <form
-      action={formAction}
-      className="max-w-[319px] mx-auto"
-      aria-label="Login"
-    >
-      {/* Could render out errors, but we'll just keep it simple because it's not in the design */}
-      {/* {state.message} */}
+    <form action={formAction} aria-label="Login">
       <div>
         <label
           htmlFor="username"
@@ -28,7 +22,10 @@ export const LoginForm: FC<{ children?: ReactNode }> = () => {
           name="username"
           id="username"
           placeholder="Username"
-          className="block w-full text-fg border-input-stroke border border-solid rounded-[8px] py-[13px] pl-[10px]"
+          className="block w-full text-fg border-input-stroke border border-solid rounded-[8px] py-[13px] pl-[10px]
+
+          focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
+          "
         />
       </div>
       <div className="pb-[23px]" />
@@ -45,12 +42,17 @@ export const LoginForm: FC<{ children?: ReactNode }> = () => {
           required
           name="password"
           id="password"
+          type="password"
           placeholder="Password"
-          className="block w-full text-fg border-input-stroke border border-solid rounded-[8px] py-[13px] pl-[10px]"
+          className="block w-full text-fg border-input-stroke border border-solid rounded-[8px] py-[13px] pl-[10px]
+          focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
+          "
         />
       </div>
       <button
         disabled={isPending}
+        aria-busy={isPending}
+        type="submit"
         className="mt-6 font-bold text-[16px] text-white bg-submit-primary h-[44px] flex justify-center items-center w-full rounded-[8px] cursor-pointer"
       >
         Sign In

@@ -20,23 +20,25 @@ export const PhotoItem: FC<{
   onToggleLike,
 }) => {
   return (
-    <div className="grid grid-cols-[31px_75px_minmax(0,1fr)_min-content] items-start">
+    <div className="grid grid-cols-[31px_75px_minmax(0,1fr)_auto] items-start">
       <button
         type="button"
         className="cursor-pointer"
+        aria-label={`${isLiked ? 'Unlike' : 'like'} this photo`}
+        aria-pressed={isLiked}
         onClick={() => onToggleLike(id)}
       >
         {isLiked ? (
           <img
             src="/star-filled.svg"
-            alt="liked"
+            alt="filled star"
             className="w-[19px]"
             data-testid="img-liked"
           />
         ) : (
           <img
             src="/star-empty.svg"
-            alt="unliked"
+            alt="empty star"
             className="w-[19px]"
             data-testid="img-unliked"
           />
@@ -53,11 +55,13 @@ export const PhotoItem: FC<{
         <p className="text-[14px] font-bold flex justify-between">
           <span>{photographer}</span>
         </p>
-        <p className="text-[14px] truncate w-full pr-2">{alt}</p>
+        <p className="text-[14px] truncate w-[90%] lg:w-full pr-2 pb-px min-w-0">
+          {alt}
+        </p>
         <div className="text-[14px] flex items-center">
           <p style={{ color: avgColor }}>{avgColor}</p>
           <div
-            className="bg-skeleton size-3 ml-2"
+            className="bg-skeleton size-3 ml-[6px]"
             style={{
               backgroundColor: avgColor,
             }}
@@ -70,6 +74,7 @@ export const PhotoItem: FC<{
           href={photographerUrl}
           target="_blank"
           rel="noopener noreferrer"
+          aria-label={`View ${photographer}'s profile (opens in new tab)`}
         >
           <img src="/links.svg" className="w-[12px] inline" alt="links" />{' '}
           <span className="text-link text-[12px]">Portfolio</span>

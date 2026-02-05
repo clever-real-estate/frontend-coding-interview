@@ -18,8 +18,8 @@ export default function Home() {
 
   return (
     <main>
-      <div className="w-[532px] mx-auto px-4">
-        <h1 className="font-bold text-[20px] pb-[35px]">All photos</h1>
+      <div className="max-w-[532px] mx-auto px-[35px]">
+        <h1 className="font-bold text-[20px] pb-[39px]">All photos</h1>
 
         {isLoading && <PhotosLoading />}
         {error && <p>{`We couldn't load this, please refresh the page`}</p>}

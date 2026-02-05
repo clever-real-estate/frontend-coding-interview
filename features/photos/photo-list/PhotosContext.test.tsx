@@ -22,7 +22,7 @@ const photo2 = {
   src: { original: 'orig2.jpg', small: 'small2.jpg' },
   alt: 'Another photo',
   avg_color: '#000000',
-}
+} satisfies Photo
 
 const photos: Photo[] = [photo1, photo2]
 
@@ -97,6 +97,34 @@ describe('PhotosContext', () => {
 
     expect(screen.getByTestId('likes')).toHaveTextContent(
       JSON.stringify({ 1: false })
+    )
+  })
+
+  it('should override likes when calling setLikes', async () => {
+    const TestComponent = () => {
+      const { likes, toggleLike, setLikes } = usePhotosContext()
+      return (
+        <>
+          <div data-testid="likes">{JSON.stringify(likes)}</div>
+          <button onClick={() => toggleLike('2')}>Toggle</button>
+          <button onClick={() => setLikes(photos)}>Set likes</button>
+        </>
+      )
+    }
+
+    render(
+      <PhotosProvider>
+        <TestComponent />
+      </PhotosProvider>
+    )
+
+    const user = userEvent.setup()
+
+    await user.click(screen.getByRole('button', { name: 'Toggle' }))
+    await user.click(screen.getByRole('button', { name: 'Set likes' }))
+
+    expect(screen.getByTestId('likes')).toHaveTextContent(
+      '{"1":true,"2":false}'
     )
   })
 })

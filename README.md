@@ -1,42 +1,40 @@
-# Clever's Frontend Coding Interview
-👋 Hello!, Hola!, Witam!
+# Photo app
 
-Thank you for taking the time to interview with Clever. This coding challenge is meant to be a _short_ exercise to see how you code on the frontend. Please don't spend more than a couple hours, and certainly don't stress. Treat it like you would any other coding task. Throw on some tunes 🎶, sit back, relax 😌, and code!
+This app shows your photos.
 
-### Requirements
-- Create a small web app using React and Typescript.
-- Our preference is with NextJs.
-- However, please use either `npm` or `yarn`.
-- It will utilize the Pexels API to pull in some photos. Details below.
-- We'd like you to create two (mobile **responsive**) pages:
-  1. Sign in
-  2. All photos
-- You can fork this repo and commit your code there. Once done, please add the following users as members so we can review:
-  - James Crain (@imjamescrain)
-  - Jimmy Lien (@jlien)
-  - Nick Clucas (@nickcluc)
-  - Ryan McCue (@rymccue)
-- We'll circle back with you and review 1:1.
+## Installation
 
-### Details
-- Mocks for these pages are provided in Figma. You should have been sent an invite to access them, if not let us know.
-  - [Figma Mocks](https://www.figma.com/file/wr1seCuhlRtoFGuz1iWgyF/Frontend-Coding-Mocks?type=design&node-id=0%3A1&mode=design&t=Uw1av3TypDUDcLAd-1)
-  - We are looking for **attention to detail** when implementing these. If a font size is 14px in the mocks, please make sure it renders that way in your app.
-- There is also a logo and an icon provided (SVGs) included in this repo.
-- Pexels API Info
-  - Api Key: `Mz0iC21IFLz9HuN8ypIbJ54l8OuGnpW2IsVoQrYBEyagQXt1YeBEA7H0`
-  - Include an `Authorization` header with this value.
-  - Endpoint: https://api.pexels.com/v1/search?query=nature&per_page=10
-  - Documenation: https://www.pexels.com/api/documentation/#photos-search
-- Make the "Sign in" page functional. However, you can spoof authentication any way you'd like (eg. save a value to local storage, etc).
-- Make "All photos" require authentication to access.
-- Only need to show 10 photos on the "All photos" page. Paging is not required.
-- Photos should be like/unlikeable.
-- We want to see that you have a basic understanding of React concepts (eg. contexts, callbacks, etc.).
-- We also want to see you know how to write tests. Nothing fancy, just the basics are fine.
+```
+npm i
+```
 
-### Final Thoughts
+## Getting started
 
-Remember, please don't spend too much time on this. In fact, save a little time and **add a section to the README** outlining what else you'd do differently to make this a production ready app.
+To start the app, run `npm run dev`
 
-**Any questions**, just let us know. Send emails to <a href="mailto:james.crain@movewithclever.com">james.crain@movewithclever.com</a>. Good luck!
+`/` Is the home page where it lists your photos. Authentication is required for this route. If you are not authenticated, you will be redirected to `/login`. For simplicity sake, any username or password can be entered. The only real constraint is that the username and password can not be empty.
+
+To log out, visit `/login` and you will be automatically logged out.
+
+You can like a photo by clicking the star icon. Likes are client sided, and not held.  
+
+## About 
+
+The authentication is supposed to mimick JWT in an http only cookie.
+
+
+## Production Improvements
+
+- Have a chat with the designer to decrease the horizontal padding to 16px, so more content can be visible on mobile.
+- Ask the designer how we're supposed to handle large amounts of text on the alt. 
+- Ask designer about focus states and disabled states.
+- Perhaps some E2E tests.
+- I'd use BetterAuth for auth here instead of the pseudo jwt auth. 
+- Proper validation of login data. I'm only checking client side that they are not empty and on the backend that they exist in the form data.
+- Showing login validation messages
+- The fact that I can't change the likes through pexels API complicated things a little. I would have used react-query to mutate the like and then invalidate the `'photos'` query, which would automatically refetch the photos and update the liked data, but I had to take a different approach. Instead, I held the likes in context. This also raises questions as to how the likes are supposed to function, such as, should likes persist in local storage? What happens if the photos were to be refetched? Does the like come from the recently fetched 
+- Have some type of dealio where images load in smoothly, like a fade in or something.
+- Optimize for which image I use from pexels verses the actual size used.
+
+
+
