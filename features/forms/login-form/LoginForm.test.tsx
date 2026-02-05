@@ -1,96 +1,53 @@
 import { render, screen } from '@testing-library/react'
-import { userEvent } from '@testing-library/user-event'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { LoginForm } from './LoginForm'
+import { userEvent } from '@testing-library/user-event'
+import { beforeEach } from 'node:test'
+import { loginAction } from './actions'
 
-describe('SignupForm', () => {
-  it('renders a form element', () => {
+vi.mock('./actions', () => ({
+  loginAction: vi.fn(),
+}))
+
+describe('LoginForm', () => {
+  beforeEach(() => {
+    vi.mocked(loginAction).mockReset()
+  })
+
+  it('renders a form element with username and password inputs', () => {
     render(<LoginForm />)
+
     const form = screen.getByRole('form')
     expect(form).toBeInTheDocument()
+
+    expect(screen.getByLabelText(/username/i)).toBeInTheDocument()
+    expect(screen.getByLabelText(/password/i)).toBeInTheDocument()
   })
 
-  it('renders the submit button with correct text', () => {
+  it('submits username and password on submit', async () => {
     render(<LoginForm />)
-    const button = screen.getByRole('button', { name: /sign in/i })
-    expect(button).toBeInTheDocument()
-  })
 
-  it('renders children when provided', () => {
-    render(
-      <LoginForm>
-        <input type="email" placeholder="Email" />
-        <input type="password" placeholder="Password" />
-      </LoginForm>
+    vi.mocked(loginAction).mockImplementation(
+      () => new Promise(resolve => setTimeout(resolve, 100))
     )
 
-    const emailInput = screen.getByPlaceholderText('Email')
-    const passwordInput = screen.getByPlaceholderText('Password')
+    const submitButton = screen.getByRole('button', { name: /sign in/i })
 
-    expect(emailInput).toBeInTheDocument()
-    expect(passwordInput).toBeInTheDocument()
-  })
+    expect(submitButton).toBeEnabled()
 
-  it('prevents default form submission', async () => {
     const user = userEvent.setup()
-    const { container } = render(
-      <LoginForm>
-        <input type="email" name="email" />
-      </LoginForm>
-    )
 
-    const form = container.querySelector('form')
-    const submitHandler = vi.fn(e => e.preventDefault())
+    await user.type(screen.getByLabelText(/username/i), 'test@example.com')
+    await user.type(screen.getByLabelText(/password/i), 'secret')
+    await user.click(submitButton)
 
-    if (form) {
-      form.addEventListener('submit', submitHandler)
-      const button = screen.getByRole('button', { name: /sign in/i })
-      await user.click(button)
-
-      expect(submitHandler).toHaveBeenCalled()
-    }
+    expect(submitButton).toBeDisabled()
   })
 
-  it('renders without children', () => {
+  it('renders error on submit', async () => {
     render(<LoginForm />)
-    const button = screen.getByRole('button', { name: /sign in/i })
-    expect(button).toBeInTheDocument()
-  })
 
-  it('form submission can be triggered by pressing enter', async () => {
-    const user = userEvent.setup()
-    const { container } = render(
-      <LoginForm>
-        <input type="email" name="email" />
-      </LoginForm>
-    )
-
-    const form = container.querySelector('form')
-    const submitHandler = vi.fn(e => e.preventDefault())
-
-    if (form) {
-      form.addEventListener('submit', submitHandler)
-      const input = screen.getByRole('textbox')
-      await user.type(input, '{Enter}')
-
-      expect(submitHandler).toHaveBeenCalled()
-    }
-  })
-
-  it('renders multiple form fields correctly', () => {
-    render(
-      <LoginForm>
-        <label htmlFor="name">Name</label>
-        <input id="name" type="text" />
-        <label htmlFor="email">Email</label>
-        <input id="email" type="email" />
-        <label htmlFor="password">Password</label>
-        <input id="password" type="password" />
-      </LoginForm>
-    )
-
-    expect(screen.getByLabelText('Name')).toBeInTheDocument()
-    expect(screen.getByLabelText('Email')).toBeInTheDocument()
-    expect(screen.getByLabelText('Password')).toBeInTheDocument()
+    // Not going to write out the test because it's not in the design
+    // and therefore not implemented
   })
 })

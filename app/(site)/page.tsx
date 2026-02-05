@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
-import { PhotosContent } from './PhotosContent'
-import { PhotosLoading } from './PhotosLoading'
+import { PhotosContent } from '../../features/photos/photo-list/PhotosContent'
+import { PhotosLoading } from '../../features/photos/photo-list/PhotosLoading'
 
 export default function Home() {
   return (

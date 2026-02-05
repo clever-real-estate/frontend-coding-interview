@@ -1,5 +1,4 @@
 import { Logo } from '@/components/Logo'
-import { LoginFields } from '@/features/forms/login-form/LoginFields'
 import { LoginForm } from '@/features/forms/login-form/LoginForm'
 
 export default async function Login() {
@@ -14,9 +13,7 @@ export default async function Login() {
         Sign in to your account
       </h1>
 
-      <LoginForm>
-        <LoginFields />
-      </LoginForm>
+      <LoginForm />
     </main>
   )
 }

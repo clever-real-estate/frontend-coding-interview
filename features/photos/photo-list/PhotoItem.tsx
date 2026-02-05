@@ -1,24 +1,47 @@
 import { FC } from 'react'
 
 export const PhotoItem: FC<{
+  id: number
   photographer: string
   alt: string
   src: string
   avgColor: string
   isLiked: boolean
   photographerUrl: string
-}> = ({ photographer, src, alt, avgColor, photographerUrl, isLiked }) => {
+  onToggleLike: (id: number) => void
+}> = ({
+  id,
+  photographer,
+  src,
+  alt,
+  avgColor,
+  photographerUrl,
+  isLiked,
+  onToggleLike,
+}) => {
   return (
-    <div className="grid grid-cols-[31px_75px_minmax(0,1fr)_min-content] w-[500px]">
-      <div className="">
-        <button type="button" className="cursor-pointer">
-          {isLiked ? (
-            <img src="/star-filled.svg" alt="" className="w-[19px]" />
-          ) : (
-            <img src="/star-empty.svg" alt="" className="w-[19px]" />
-          )}
-        </button>
-      </div>
+    <div className="grid grid-cols-[31px_75px_minmax(0,1fr)_min-content] items-start">
+      <button
+        type="button"
+        className="cursor-pointer"
+        onClick={() => onToggleLike(id)}
+      >
+        {isLiked ? (
+          <img
+            src="/star-filled.svg"
+            alt="liked"
+            className="w-[19px]"
+            data-testid="img-liked"
+          />
+        ) : (
+          <img
+            src="/star-empty.svg"
+            alt="unliked"
+            className="w-[19px]"
+            data-testid="img-unliked"
+          />
+        )}
+      </button>
       <div className="size-[75px] relative shrink-0">
         <img
           src={src}
@@ -45,7 +68,7 @@ export const PhotoItem: FC<{
         <a
           className="flex gap-1"
           href={photographerUrl}
-          target='_blank'
+          target="_blank"
           rel="noopener noreferrer"
         >
           <img src="/links.svg" className="w-[12px] inline" alt="links" />{' '}

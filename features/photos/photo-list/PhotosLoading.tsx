@@ -4,7 +4,7 @@ export function PhotosLoading() {
       {Array.from({ length: 10 }).map((_, i) => (
         <div
           key={i}
-          className="h-[200px] bg-gray-200 animate-pulse rounded-lg"
+          className="h-[100px] bg-gray-200 animate-pulse rounded-lg"
         />
       ))}
     </div>
