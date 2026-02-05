@@ -10,6 +10,7 @@ export const usePhotosQuery = () => {
     total_results: number
   }>({
     queryKey: ['photos'],
-    queryFn: () => fetch('/api/photos').then(r => r.json()),
+    queryFn: () =>
+      fetch('/api/photos', { credentials: 'include' }).then(r => r.json()),
   })
 }

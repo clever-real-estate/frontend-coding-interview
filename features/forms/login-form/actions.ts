@@ -23,8 +23,8 @@ export async function loginAction(
 
     cooks.set('token', 'howdy', {
       httpOnly: true,
-      secure: true,
-      sameSite: 'strict',
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
       maxAge: 60 * 60 * 24 * 7,
     })
 
