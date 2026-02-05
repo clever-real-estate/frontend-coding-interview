@@ -3,7 +3,7 @@ import { describe, it, expect } from 'vitest'
 import { PhotoList } from './PhotoList'
 
 const photo1 = {
-  id: 1,
+  id: '1',
   photographer: 'John Wick',
   alt: 'A day at the subway',
   avg_color: '#FF6347',
@@ -17,7 +17,7 @@ const photo1 = {
 
 const photo2 = {
   ...photo1,
-  id: 2,
+  id: '2',
   photographer: 'Caseoh',
   alt: 'Gaming with my people',
   avg_color: '#7A4EC8',
@@ -26,13 +26,17 @@ const photo2 = {
 
 describe('PhotoList', () => {
   it('should render without error', () => {
-    render(<PhotoList photos={[photo1, photo2]} />)
+    render(
+      <PhotoList onToggleLike={() => {}} likes={{}} photos={[photo1, photo2]} />
+    )
     expect(screen.getByText('John Wick')).toBeInTheDocument()
     expect(screen.getByText('Caseoh')).toBeInTheDocument()
   })
 
   it('should render nothing when photos array is empty', () => {
-    const { container } = render(<PhotoList photos={[]} />)
+    const { container } = render(
+      <PhotoList onToggleLike={() => {}} likes={{}} photos={[]} />
+    )
     expect(container).toBeEmptyDOMElement()
   })
 })

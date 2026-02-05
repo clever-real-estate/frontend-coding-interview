@@ -1,5 +1,5 @@
 export type Photo = {
-  id: number
+  id: string
   photographer: string
   photographer_url: string
   liked: boolean

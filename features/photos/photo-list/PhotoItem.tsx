@@ -1,14 +1,14 @@
 import { FC } from 'react'
 
 export const PhotoItem: FC<{
-  id: number
+  id: string
   photographer: string
   alt: string
   src: string
   avgColor: string
   isLiked: boolean
   photographerUrl: string
-  onToggleLike: (id: number) => void
+  onToggleLike: (id: string) => void
 }> = ({
   id,
   photographer,
