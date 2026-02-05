@@ -5,8 +5,7 @@ import { loginAction } from './actions'
 import { useActionState } from 'react'
 
 export const LoginForm: FC<{ children?: ReactNode }> = ({ children }) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [, formAction, isPending] = useActionState(loginAction, null)
+]  const [, formAction, isPending] = useActionState(loginAction, null)
 
   return (
     <form action={formAction} className="max-w-[319px] mx-auto">

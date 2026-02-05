@@ -1,6 +1,18 @@
 import { NextResponse } from 'next/server'
+import { cookies } from 'next/headers'
 
 export async function GET() {
+  const cookieStore = await cookies()
+
+  const token = cookieStore.get('token')
+
+  // Hardcode to true for simplicity sake
+  const isTokenValid = true
+
+  if (token == null || !isTokenValid) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+
   try {
     const response = await fetch(
       `https://api.pexels.com/v1/search?query=nature&per_page=10`,

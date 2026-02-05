@@ -1,27 +1,27 @@
 import { render, screen } from '@testing-library/react'
 import { userEvent } from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
-import { SignupForm } from './LoginForm'
+import { LoginForm } from './LoginForm'
 
 describe('SignupForm', () => {
   it('renders a form element', () => {
-    render(<SignupForm />)
+    render(<LoginForm />)
     const form = screen.getByRole('form')
     expect(form).toBeInTheDocument()
   })
 
   it('renders the submit button with correct text', () => {
-    render(<SignupForm />)
+    render(<LoginForm />)
     const button = screen.getByRole('button', { name: /sign in/i })
     expect(button).toBeInTheDocument()
   })
 
   it('renders children when provided', () => {
     render(
-      <SignupForm>
+      <LoginForm>
         <input type="email" placeholder="Email" />
         <input type="password" placeholder="Password" />
-      </SignupForm>
+      </LoginForm>
     )
 
     const emailInput = screen.getByPlaceholderText('Email')
@@ -34,13 +34,13 @@ describe('SignupForm', () => {
   it('prevents default form submission', async () => {
     const user = userEvent.setup()
     const { container } = render(
-      <SignupForm>
+      <LoginForm>
         <input type="email" name="email" />
-      </SignupForm>
+      </LoginForm>
     )
 
     const form = container.querySelector('form')
-    const submitHandler = vi.fn((e) => e.preventDefault())
+    const submitHandler = vi.fn(e => e.preventDefault())
 
     if (form) {
       form.addEventListener('submit', submitHandler)
@@ -52,7 +52,7 @@ describe('SignupForm', () => {
   })
 
   it('renders without children', () => {
-    render(<SignupForm />)
+    render(<LoginForm />)
     const button = screen.getByRole('button', { name: /sign in/i })
     expect(button).toBeInTheDocument()
   })
@@ -60,13 +60,13 @@ describe('SignupForm', () => {
   it('form submission can be triggered by pressing enter', async () => {
     const user = userEvent.setup()
     const { container } = render(
-      <SignupForm>
+      <LoginForm>
         <input type="email" name="email" />
-      </SignupForm>
+      </LoginForm>
     )
 
     const form = container.querySelector('form')
-    const submitHandler = vi.fn((e) => e.preventDefault())
+    const submitHandler = vi.fn(e => e.preventDefault())
 
     if (form) {
       form.addEventListener('submit', submitHandler)
@@ -79,14 +79,14 @@ describe('SignupForm', () => {
 
   it('renders multiple form fields correctly', () => {
     render(
-      <SignupForm>
+      <LoginForm>
         <label htmlFor="name">Name</label>
         <input id="name" type="text" />
         <label htmlFor="email">Email</label>
         <input id="email" type="email" />
         <label htmlFor="password">Password</label>
         <input id="password" type="password" />
-      </SignupForm>
+      </LoginForm>
     )
 
     expect(screen.getByLabelText('Name')).toBeInTheDocument()
