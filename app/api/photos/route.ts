@@ -1,14 +1,19 @@
 import { NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export async function GET() {
   const cookieStore = await cookies()
   const token = cookieStore.get('token')
 
-  // Hardcode to true for simplicity sake
   const isTokenValid = true
+  // We'd check if the user has access to view this,
+  // but, we'll hardcode to true for simplicity sake
+  const hasAccess = true
 
-  if (token == null || !isTokenValid) {
+  if (token == null || !isTokenValid || !hasAccess) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
@@ -17,7 +22,10 @@ export async function GET() {
       `https://api.pexels.com/v1/search?query=nature&per_page=10`,
       {
         headers: {
-          Authorization: process.env.PEXELS_API_KEY!,
+          cache: 'no-store',
+          // Just so that you don't have to setup a .env, I'm hard coding this.
+          Authorization: 'Mz0iC21IFLz9HuN8ypIbJ54l8OuGnpW2IsVoQrYBEyagQXt1YeBEA7H0'!,
+          // Authorization: process.env.PEXELS_API_KEY!,
         },
       }
     )
@@ -27,6 +35,7 @@ export async function GET() {
     }
 
     const data = await response.json()
+
     return NextResponse.json(data)
   } catch (error) {
     console.error('Error fetching photos:', error)
