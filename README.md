@@ -12,8 +12,8 @@ Thank you for taking the time to interview with Clever. This coding challenge is
   1. Sign in
   2. All photos
 - You can fork this repo and commit your code there. Once done, please add the following users as members so we can review:
-  - James Crain (@imjamescrain)
   - Jimmy Lien (@jlien)
+  - Nykolle Araujo (@nymalone)
   - Nick Clucas (@nickcluc)
   - Ryan McCue (@rymccue)
 - We'll circle back with you and review 1:1.
@@ -39,4 +39,4 @@ Thank you for taking the time to interview with Clever. This coding challenge is
 
 Remember, please don't spend too much time on this. In fact, save a little time and **add a section to the README** outlining what else you'd do differently to make this a production ready app.
 
-**Any questions**, just let us know. Send emails to <a href="mailto:james.crain@movewithclever.com">james.crain@movewithclever.com</a>. Good luck!
+**Any questions**, just let us know. Send emails to <a href="mailto:nykolle.araujo@movewithclever.com">nykolle.araujo@movewithclever.com</a>. Good luck!
