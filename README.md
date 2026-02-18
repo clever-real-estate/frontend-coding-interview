@@ -14,7 +14,6 @@ Thank you for taking the time to interview with Clever. This coding challenge is
 - You can fork this repo and commit your code there. Once done, please add the following users as members so we can review:
   - Jimmy Lien (@jlien)
   - Nykolle Araujo (@nymalone)
-  - Nick Clucas (@nickcluc)
   - Ryan McCue (@rymccue)
 - We'll circle back with you and review 1:1.
 
