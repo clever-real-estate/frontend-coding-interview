@@ -26,7 +26,7 @@ Thank you for taking the time to interview with Clever. This coding challenge is
   - Api Key: `Mz0iC21IFLz9HuN8ypIbJ54l8OuGnpW2IsVoQrYBEyagQXt1YeBEA7H0`
   - Include an `Authorization` header with this value.
   - Endpoint: https://api.pexels.com/v1/search?query=nature&per_page=10
-  - Documenation: https://www.pexels.com/api/documentation/#photos-search
+  - Documentation: https://www.pexels.com/api/documentation/#photos-search
 - Make the "Sign in" page functional. However, you can spoof authentication any way you'd like (eg. save a value to local storage, etc).
 - Make "All photos" require authentication to access.
 - Only need to show 10 photos on the "All photos" page. Paging is not required.
